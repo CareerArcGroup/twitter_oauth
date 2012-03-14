@@ -4,7 +4,8 @@ module TwitterOAuth
     # Search for places (cities and neighborhoods) that can be attached to a statuses/update. 
     # Given a latitude and a longitude, return a list of all the valid places that can be used as a place_id when updating a status
     def reverse_geocode(lat, lng, options={})
-      options[:lat] = lat; options[:lng] = lng
+      # options[:lat] = lat; options[:lng] = lng
+      options[:lat] = lat; options[:long] = lng # SMR - Updated "lng" parameter to "long"
       args = options.map{|k,v| "#{k}=#{v}"}.join('&')
       get "/geo/reverse_geocode.json?#{args}"
     end

@@ -17,6 +17,7 @@ module TwitterOAuth
     # Returns the 20 most recent statuses posted by the authenticating user and that user's friends.
     def friends_timeline(options={})
       args = options.map{|k,v| "#{k}=#{v}"}.join('&')
+      args[:include_rts] = false unless args[:include_rts].present?
       get("/statuses/friends_timeline.json?#{args}")
     end
     
